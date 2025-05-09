@@ -48,7 +48,7 @@ mv bin oldbin
 mkdir bin
 
 # Suggested by SU email Jul 15, 2024
-curl -sS https://mac.r-project.org/openmp/openmp-14.0.6-darwin20-Release.tar.gz \
+curl -sS https://mac.r-project.org/openmp/openmp-17.0.6-darwin20-Release.tar.gz \
  | tar vxz --strip 3 -C include/ usr/local/include
 
 # nb: h5++ seems missing ?
