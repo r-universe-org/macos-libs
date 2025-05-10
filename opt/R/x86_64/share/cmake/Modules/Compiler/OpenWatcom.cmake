@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 # This module is shared by multiple languages; use include blocker.
 include_guard()
@@ -40,6 +40,8 @@ foreach(lang C CXX)
   string(APPEND CMAKE_${lang}_FLAGS_MINSIZEREL_INIT " -s -os -d0 -dNDEBUG")
   string(APPEND CMAKE_${lang}_FLAGS_RELEASE_INIT " -s -ot -d0 -dNDEBUG")
   string(APPEND CMAKE_${lang}_FLAGS_RELWITHDEBINFO_INIT " -s -ot -d1 -dNDEBUG")
+
+  set(CMAKE_${lang}_LINK_MODE LINKER)
 endforeach()
 
 # C create import library

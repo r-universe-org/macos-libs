@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 FindwxWindows
@@ -34,7 +34,7 @@ the name of the library is.  This code sets the following variables:
 
 OPTIONS If you need OpenGL support please
 
-::
+.. code-block:: cmake
 
   set(WXWINDOWS_USE_GL 1)
 
@@ -52,7 +52,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/Use_wxWindows.cmake).
 
 USAGE
 
-::
+.. code-block:: cmake
 
   set(WXWINDOWS_USE_GL 1)
   find_package(wxWindows)

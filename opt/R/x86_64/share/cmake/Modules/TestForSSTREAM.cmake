@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 TestForSSTREAM
@@ -29,7 +29,3 @@ if(NOT DEFINED CMAKE_HAS_ANSI_STRING_STREAM)
        "Does the compiler support sstream")
   endif ()
 endif()
-
-
-
-

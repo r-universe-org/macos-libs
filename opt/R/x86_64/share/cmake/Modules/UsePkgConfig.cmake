@@ -1,13 +1,12 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 UsePkgConfig
 ------------
 
-Obsolete pkg-config module for CMake, use FindPkgConfig instead.
-
-
+.. deprecated:: 3.0
+  Use :module:`FindPkgConfig` instead.
 
 This module defines the following macro:
 

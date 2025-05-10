@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 CMakeBackwardCompatibilityCXX
@@ -46,4 +46,3 @@ if(NOT CMAKE_SKIP_COMPATIBILITY_TESTS)
   include(TestForSSTREAM)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_SAVE}")
 endif()
-

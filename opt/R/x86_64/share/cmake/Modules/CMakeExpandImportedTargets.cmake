@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 CMakeExpandImportedTargets
@@ -20,7 +20,7 @@ behavior or use of the :prop_tgt:`INTERFACE_LINK_LIBRARIES` property
 because :manual:`generator expressions <cmake-generator-expressions(7)>`
 cannot be evaluated during configuration.
 
-::
+.. code-block:: cmake
 
  CMAKE_EXPAND_IMPORTED_TARGETS(<var> LIBRARIES lib1 lib2...libN
                                [CONFIGURATION <config>])
@@ -33,7 +33,7 @@ respective configuration of the imported targets if it exists.  If no
 CONFIGURATION is given, it uses the first configuration from
 ${CMAKE_CONFIGURATION_TYPES} if set, otherwise ${CMAKE_BUILD_TYPE}.
 
-::
+.. code-block:: cmake
 
     cmake_expand_imported_targets(expandedLibs
       LIBRARIES ${CMAKE_REQUIRED_LIBRARIES}

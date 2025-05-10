@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 
 # determine the compiler to use for ASM programs
@@ -129,6 +129,10 @@ if(NOT CMAKE_ASM${ASM_DIALECT}_COMPILER_ID)
   list(APPEND CMAKE_ASM${ASM_DIALECT}_COMPILER_ID_VENDORS QCC)
   set(CMAKE_ASM${ASM_DIALECT}_COMPILER_ID_VENDOR_FLAGS_QCC "-V")
   set(CMAKE_ASM${ASM_DIALECT}_COMPILER_ID_VENDOR_REGEX_QCC "gcc_nto")
+
+  list(APPEND CMAKE_ASM${ASM_DIALECT}_COMPILER_ID_VENDORS Tasking)
+  set(CMAKE_ASM${ASM_DIALECT}_COMPILER_ID_VENDOR_FLAGS_Tasking "--version")
+  set(CMAKE_ASM${ASM_DIALECT}_COMPILER_ID_VENDOR_REGEX_Tasking "TASKING")
 
   include(CMakeDetermineCompilerId)
   set(userflags)

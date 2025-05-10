@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 CheckCXXCompilerFlag
@@ -11,7 +11,7 @@ Check once whether the CXX compiler supports a given flag.
 
   .. code-block:: cmake
 
-    check_cxx_compiler_flag(<flag> <var>)
+    check_cxx_compiler_flag(<flag> <resultVar>)
 
 Check once that the ``<flag>`` is accepted by the compiler without a diagnostic.
 The result is stored in the internal cache variable specified by

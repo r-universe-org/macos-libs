@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 FindLTTngUST
@@ -97,8 +97,8 @@ if(LTTNGUST_INCLUDE_DIRS AND LTTNGUST_LIBRARIES)
   set(LTTNGUST_LIBRARIES ${LTTNGUST_LIBRARIES} ${CMAKE_DL_LIBS})
 endif()
 
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
-find_package_handle_standard_args(LTTngUST FOUND_VAR LTTNGUST_FOUND
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(LTTngUST
                                   REQUIRED_VARS LTTNGUST_LIBRARIES
                                                 LTTNGUST_INCLUDE_DIRS
                                   VERSION_VAR LTTNGUST_VERSION_STRING)

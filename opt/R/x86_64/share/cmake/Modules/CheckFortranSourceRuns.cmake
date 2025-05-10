@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 CheckFortranSourceRuns
@@ -21,9 +21,9 @@ subsequently be run.
   executable, and then run. The ``<code>`` must contain a Fortran ``program``.
 
   The result is stored in the internal cache variable specified by
-  ``<resultVar>``. Success of build and run is indicated by boolean ``true``.
-  Failure to build or run is indicated by boolean ``false`` such as an empty
-  string or an error message.
+  ``<resultVar>``. If the code builds and runs with exit code ``0``, success is
+  indicated by boolean ``true``. Failure to build or run is indicated by boolean
+  ``false``, such as an empty string or an error message.
 
   .. code-block:: cmake
 

@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 FindOpenSP
@@ -44,7 +44,7 @@ This will define the following variables:
   ``SP_MULTI_BYTE`` to match this value in order to avoid issues with character
   decoding.
 
-IMPORTED Targets
+Imported Targets
 ^^^^^^^^^^^^^^^^
 
 This module defines the :prop_tgt:`IMPORTED` target ``OpenSP::OpenSP``, if
@@ -122,7 +122,6 @@ endif ()
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(OpenSP
-  FOUND_VAR OpenSP_FOUND
   REQUIRED_VARS OpenSP_LIBRARY OpenSP_INCLUDE_DIR
   VERSION_VAR OpenSP_VERSION
   )

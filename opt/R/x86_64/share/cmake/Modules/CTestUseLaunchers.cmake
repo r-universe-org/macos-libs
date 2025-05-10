@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 CTestUseLaunchers
@@ -46,7 +46,7 @@ endif()
 
 if(CTEST_USE_LAUNCHERS)
   set(__launch_common_options
-    "--target-name <TARGET_NAME> --build-dir <CMAKE_CURRENT_BINARY_DIR>")
+    "--target-name <TARGET_NAME> --current-build-dir <CMAKE_CURRENT_BINARY_DIR>")
 
   set(__launch_compile_options
     "${__launch_common_options} --output <OBJECT> --source <SOURCE> --language <LANGUAGE>")

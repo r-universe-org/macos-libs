@@ -1,13 +1,10 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 SquishTestScript
 ----------------
-
-
-
-
+.. deprecated:: 3.0
 
 This script launches a GUI test using Squish.  You should not call the
 script directly; instead, you should access it via the SQUISH_ADD_TEST

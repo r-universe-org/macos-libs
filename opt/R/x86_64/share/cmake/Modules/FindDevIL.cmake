@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 FindDevIL
@@ -8,7 +8,7 @@ FindDevIL
 This module locates the Developer's Image Library,
 `DevIL <https://openil.sourceforge.net/>`_.
 
-IMPORTED Targets
+Imported Targets
 ^^^^^^^^^^^^^^^^
 
 .. versionadded:: 3.21
@@ -64,7 +64,7 @@ This module sets:
 # TODO: Add version support.
 # Tested under Linux and Windows (MSVC)
 
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+include(FindPackageHandleStandardArgs)
 
 find_path(IL_INCLUDE_DIR il.h
   PATH_SUFFIXES include IL
@@ -97,7 +97,7 @@ find_library(ILU_LIBRARIES
 
 #message("ILU_LIBRARIES is ${ILU_LIBRARIES}")
 
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(DevIL DEFAULT_MSG
+find_package_handle_standard_args(DevIL DEFAULT_MSG
                                   IL_LIBRARIES ILU_LIBRARIES
                                   IL_INCLUDE_DIR)
 # provide legacy variable for compatibility

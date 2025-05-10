@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 
 # Function to compile a source file to identify the compiler ABI.
@@ -52,14 +52,23 @@ function(CMAKE_DETERMINE_COMPILER_ABI lang src)
 
     __TestCompiler_setTryCompileTargetType()
 
-    # Avoid failing ABI detection on warnings.
+    # Avoid failing ABI detection caused by non-functionally relevant
+    # compiler arguments
     if(CMAKE_TRY_COMPILE_CONFIGURATION)
       string(TOUPPER "${CMAKE_TRY_COMPILE_CONFIGURATION}" _tc_config)
     else()
       set(_tc_config "DEBUG")
     endif()
     foreach(v CMAKE_${lang}_FLAGS CMAKE_${lang}_FLAGS_${_tc_config})
+      # Avoid failing ABI detection on warnings.
       string(REGEX REPLACE "(^| )-Werror([= ][^-][^ ]*)?( |$)" " " ${v} "${${v}}")
+      # Avoid passing of "-pipe" when determining the compiler internals. With
+      # "-pipe" GCC will use pipes to pass data between the involved
+      # executables.  This may lead to issues when their stderr output (which
+      # contains the relevant compiler internals) becomes interweaved.
+      string(REGEX REPLACE "(^| )-pipe( |$)" " " ${v} "${${v}}")
+      # Suppress any formatting of warnings and/or errors
+      string(REGEX REPLACE "(-f|/)diagnostics(-|:)color(=[a-z]+)?" "" ${v} "${${v}}")
     endforeach()
 
     # Save the current LC_ALL, LC_MESSAGES, and LANG environment variables

@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 FindCUDAToolkit
@@ -102,7 +102,7 @@ Options
     If specified, the CUDA Toolkit is considered found only if the exact
     ``VERSION`` specified is recovered.
 
-Imported targets
+Imported Targets
 ^^^^^^^^^^^^^^^^
 
 An :ref:`imported target <Imported targets>` named ``CUDA::toolkit`` is provided.
@@ -770,13 +770,13 @@ else()
 
   function(_CUDAToolkit_parse_version_file version_file)
     if(version_file)
-      file(READ "${version_file}" file_conents)
+      file(READ "${version_file}" file_contents)
       cmake_path(GET version_file EXTENSION LAST_ONLY version_ext)
       if(version_ext STREQUAL ".json")
-        string(JSON cuda_version_info GET "${file_conents}" "cuda" "version")
+        string(JSON cuda_version_info GET "${file_contents}" "cuda" "version")
         set(cuda_version_match_regex [=[([0-9]+)\.([0-9]+)\.([0-9]+)]=])
       elseif(version_ext STREQUAL ".txt")
-        set(cuda_version_info "${file_conents}")
+        set(cuda_version_info "${file_contents}")
         set(cuda_version_match_regex [=[CUDA Version ([0-9]+)\.([0-9]+)\.([0-9]+)]=])
       endif()
 
@@ -1054,7 +1054,7 @@ endif()
 
 #-----------------------------------------------------------------------------
 # Perform version comparison and validate all required variables are set.
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(CUDAToolkit
   REQUIRED_VARS
     CUDAToolkit_INCLUDE_DIRECTORIES
@@ -1203,7 +1203,7 @@ if(CUDAToolkit_FOUND)
   # when CUDA language is disabled
   if(NOT TARGET CUDA::cudart_static_deps)
     add_library(CUDA::cudart_static_deps IMPORTED INTERFACE)
-    if(UNIX AND (CMAKE_C_COMPILER OR CMAKE_CXX_COMPILER))
+    if(UNIX AND (CMAKE_C_COMPILER_LOADED OR CMAKE_CXX_COMPILER_LOADED))
       find_package(Threads REQUIRED)
       target_link_libraries(CUDA::cudart_static_deps INTERFACE Threads::Threads ${CMAKE_DL_LIBS})
     endif()
@@ -1320,7 +1320,9 @@ if(CUDAToolkit_FOUND)
     set(_cmake_cupti_extra_paths extras/CUPTI/lib64/
                                  extras/CUPTI/lib/
                                  ../extras/CUPTI/lib64/
-                                 ../extras/CUPTI/lib/)
+                                 ../extras/CUPTI/lib/
+                                 ../../../extras/CUPTI/lib64/
+                                 ../../../extras/CUPTI/lib/)
     _CUDAToolkit_find_and_add_import_lib(cupti
                                         EXTRA_PATH_SUFFIXES ${_cmake_cupti_extra_paths}
                                         EXTRA_INCLUDE_DIRS "${CUDAToolkit_CUPTI_INCLUDE_DIR}")

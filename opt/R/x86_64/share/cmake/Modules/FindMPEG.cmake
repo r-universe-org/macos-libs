@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 FindMPEG
@@ -30,8 +30,8 @@ find_library(MPEG_mpeg2_LIBRARY mpeg2)
 
 find_library(MPEG_vo_LIBRARY vo)
 
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(MPEG DEFAULT_MSG MPEG_mpeg2_LIBRARY MPEG_INCLUDE_DIR)
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(MPEG DEFAULT_MSG MPEG_mpeg2_LIBRARY MPEG_INCLUDE_DIR)
 
 if(MPEG_FOUND)
   set( MPEG_LIBRARIES ${MPEG_mpeg2_LIBRARY} )

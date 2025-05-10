@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 
 # This module is shared by multiple languages; use include blocker.
@@ -184,7 +184,7 @@ macro(__windows_compiler_gnu_abi lang)
       if(_vs_dir)
         list(APPEND _vs_installer_paths "${_vs_dir}/VC/Auxiliary/Build")
       endif()
-    endforeach(vs)
+    endforeach()
 
     if("${CMAKE_SIZEOF_VOID_P}" EQUAL 4)
       find_program(CMAKE_GNUtoMS_VCVARS NAMES vcvars32.bat

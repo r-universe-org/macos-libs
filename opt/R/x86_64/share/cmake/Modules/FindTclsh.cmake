@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 FindTclsh
@@ -84,7 +84,7 @@ if(TCL_TCLSH)
                   OUTPUT_STRIP_TRAILING_WHITESPACE)
 endif()
 
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+include(FindPackageHandleStandardArgs)
 if (CMAKE_FIND_PACKAGE_NAME STREQUAL "TCL" OR
     CMAKE_FIND_PACKAGE_NAME STREQUAL "TclStub")
   # FindTCL include()'s this module. It's an old pattern, but rather than
@@ -93,7 +93,7 @@ if (CMAKE_FIND_PACKAGE_NAME STREQUAL "TCL" OR
   # Transitively, FindTclStub includes FindTCL.
   set(FPHSA_NAME_MISMATCHED 1)
 endif ()
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(Tclsh
+find_package_handle_standard_args(Tclsh
                                   REQUIRED_VARS TCL_TCLSH
                                   VERSION_VAR TCLSH_VERSION_STRING)
 unset(FPHSA_NAME_MISMATCHED)

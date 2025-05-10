@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 CheckIncludeFiles
@@ -8,11 +8,11 @@ CheckIncludeFiles
 Provides a macro to check if a list of one or more header files can
 be included together.
 
-.. command:: CHECK_INCLUDE_FILES
+.. command:: check_include_files
 
   .. code-block:: cmake
 
-    CHECK_INCLUDE_FILES("<includes>" <variable> [LANGUAGE <language>])
+    check_include_files("<includes>" <variable> [LANGUAGE <language>])
 
   Check if the given ``<includes>`` list may be included together
   in a source file and store the result in an internal cache

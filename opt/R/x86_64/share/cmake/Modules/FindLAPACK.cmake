@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 FindLAPACK
@@ -55,7 +55,7 @@ The following variables may be set to influence this module's behavior:
     Search for any BLAS/LAPACK.
     Most likely, a BLAS/LAPACK with 32-bit integer interfaces will be found.
 
-Imported targets
+Imported Targets
 ^^^^^^^^^^^^^^^^
 
 This module defines the following :prop_tgt:`IMPORTED` targets:
@@ -110,7 +110,7 @@ if(CMAKE_Fortran_COMPILER_LOADED)
 else()
   include(${CMAKE_CURRENT_LIST_DIR}/CheckFunctionExists.cmake)
 endif()
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+include(FindPackageHandleStandardArgs)
 
 function(_add_lapack_target)
   if(LAPACK_FOUND AND NOT TARGET LAPACK::LAPACK)

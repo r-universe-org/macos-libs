@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 CMakeDetermineVSServicePack
@@ -15,12 +15,14 @@ the compiler version number.
 
 Determine the Visual Studio service pack of the 'cl' in use.
 
-Usage::
+Usage:
+
+.. code-block:: cmake
 
   if(MSVC)
     include(CMakeDetermineVSServicePack)
-    DetermineVSServicePack( my_service_pack )
-    if( my_service_pack )
+    DetermineVSServicePack(my_service_pack)
+    if(my_service_pack)
       message(STATUS "Detected: ${my_service_pack}")
     endif()
   endif()

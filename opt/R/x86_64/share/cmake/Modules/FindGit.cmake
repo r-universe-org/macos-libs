@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 FindGit
@@ -124,7 +124,7 @@ if(GIT_EXECUTABLE)
   unset(_findgit_role)
 endif()
 
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Git
                                   REQUIRED_VARS GIT_EXECUTABLE
                                   VERSION_VAR GIT_VERSION_STRING)

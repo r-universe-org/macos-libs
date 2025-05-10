@@ -1,5 +1,5 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
-# file Copyright.txt or https://cmake.org/licensing for details.
+# file LICENSE.rst or https://cmake.org/licensing for details.
 
 #[=======================================================================[.rst:
 FindImageMagick
@@ -39,7 +39,7 @@ There are also components for the following ImageMagick APIs:
 * ``MagickCore``: ImageMagick MagickCore low-level C API, if found.
 
 
-Imported targets
+Imported Targets
 ^^^^^^^^^^^^^^^^
 
 .. versionadded:: 3.26
@@ -322,13 +322,11 @@ endif()
 #---------------------------------------------------------------------
 # Standard Package Output
 #---------------------------------------------------------------------
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(ImageMagick
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(ImageMagick
                                   REQUIRED_VARS ${ImageMagick_REQUIRED_VARS}
                                   VERSION_VAR ImageMagick_VERSION_STRING
   )
-# Maintain consistency with all other variables.
-set(ImageMagick_FOUND ${IMAGEMAGICK_FOUND})
 
 #---------------------------------------------------------------------
 # DEPRECATED: Setting variables for backward compatibility.
