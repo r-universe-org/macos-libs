@@ -256,6 +256,46 @@ function(CMAKE_DETERMINE_COMPILER_ID lang flagvar src)
     set(CMAKE_${lang}_CL_SHOWINCLUDES_PREFIX "")
   endif()
 
+  if(CMAKE_EFFECTIVE_SYSTEM_NAME STREQUAL "Apple" AND CMAKE_${lang}_COMPILER_ID MATCHES "Clang$")
+    cmake_path(GET src EXTENSION LAST_ONLY ext)
+    set(apple_sdk_dir "${CMAKE_${lang}_COMPILER_ID_DIR}")
+    set(apple_sdk_src "apple-sdk${ext}")
+    file(WRITE "${apple_sdk_dir}/${apple_sdk_src}" "#include <AvailabilityMacros.h>\n")
+    set(apple_sdk_cmd
+      "${CMAKE_${lang}_COMPILER}"
+        ${CMAKE_${lang}_COMPILER_ID_ARG1}
+        ${CMAKE_${lang}_COMPILER_ID_FLAGS_LIST}
+        -E ${apple_sdk_src}
+    )
+    execute_process(
+      COMMAND ${apple_sdk_cmd}
+      WORKING_DIRECTORY ${apple_sdk_dir}
+      OUTPUT_VARIABLE apple_sdk_out
+      ERROR_VARIABLE apple_sdk_out
+      RESULT_VARIABLE apple_sdk_res
+    )
+    string(JOIN "\" \"" apple_sdk_cmd ${apple_sdk_cmd})
+    if(apple_sdk_res EQUAL 0 AND apple_sdk_out MATCHES [["([^"]*)/usr/include/AvailabilityMacros\.h"]])
+      if(CMAKE_MATCH_1)
+        set(CMAKE_${lang}_COMPILER_APPLE_SYSROOT "${CMAKE_MATCH_1}")
+      else()
+        set(CMAKE_${lang}_COMPILER_APPLE_SYSROOT "/")
+      endif()
+      set(apple_sdk_msg "Found apple sysroot: ${CMAKE_${lang}_COMPILER_APPLE_SYSROOT}")
+    else()
+      set(CMAKE_${lang}_COMPILER_APPLE_SYSROOT "")
+      set(apple_sdk_msg "No apple sysroot found.")
+    endif()
+    string(REPLACE "\n" "\n  " apple_sdk_out "  ${apple_sdk_out}")
+    message(CONFIGURE_LOG
+      "Detecting ${lang} compiler apple sysroot: \"${apple_sdk_cmd}\"\n"
+      "${apple_sdk_out}\n"
+      "${apple_sdk_msg}"
+    )
+  else()
+    set(CMAKE_${lang}_COMPILER_APPLE_SYSROOT "")
+  endif()
+
   set(_variant "")
   if("x${CMAKE_${lang}_COMPILER_ID}" STREQUAL "xClang"
     OR "x${CMAKE_${lang}_COMPILER_ID}" STREQUAL "xIntelLLVM")
@@ -346,6 +386,25 @@ function(CMAKE_DETERMINE_COMPILER_ID lang flagvar src)
     endif()
     if(CMAKE_${lang}_COMPILER_ARCHITECTURE_ID AND "x${CMAKE_${lang}_COMPILER_ID}" STREQUAL "xIAR")
       set(_archid " ${CMAKE_${lang}_COMPILER_ARCHITECTURE_ID}")
+    elseif(CMAKE_${lang}_COMPILER_ARCHITECTURE_ID AND "x${CMAKE_${lang}_COMPILER_ID}" STREQUAL "xRenesas")
+      # Architecture is "RH850", "RL78" or "RX", compiler name to show is "CC-RH", "CC-RL" or "CC-RX"
+      string(SUBSTRING ${CMAKE_${lang}_COMPILER_ARCHITECTURE_ID} 0 2 _archid)
+      set(_archid " CC-${_archid}")
+      # Detected compiler version is in the form as "3.2.1", show it as "3.02.01" according to the compiler's document.
+      string(REPLACE "." ";" _version_list ${_version})
+      list(GET _version_list 0 _version)
+      foreach(_i RANGE 1 2)
+        list(GET _version_list ${_i} _minor)
+        string(LENGTH ${_minor} _minor_len)
+        if (${_minor_len} EQUAL 1)
+          set(_minor "0${_minor}")
+        endif()
+        string(APPEND _version ".${_minor}")
+        unset(_minor)
+        unset(_minor_len)
+      endforeach()
+      string(REPLACE " " " V" _version ${_version})
+      unset(_version_list)
     else()
       set(_archid "")
     endif()
@@ -392,6 +451,7 @@ function(CMAKE_DETERMINE_COMPILER_ID lang flagvar src)
   set(CMAKE_${lang}_COMPILER_PRODUCED_FILES "${COMPILER_${lang}_PRODUCED_FILES}" PARENT_SCOPE)
   set(CMAKE_${lang}_COMPILER_CLANG_RESOURCE_DIR "${CMAKE_${lang}_COMPILER_CLANG_RESOURCE_DIR}" PARENT_SCOPE)
   set(CMAKE_${lang}_STANDARD_LIBRARY "${CMAKE_${lang}_STANDARD_LIBRARY}" PARENT_SCOPE)
+  set(CMAKE_${lang}_COMPILER_APPLE_SYSROOT "${CMAKE_${lang}_COMPILER_APPLE_SYSROOT}" PARENT_SCOPE)
 endfunction()
 
 include(CMakeCompilerIdDetection)
