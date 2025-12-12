@@ -1,0 +1,12 @@
+prefix=/opt/R/x86_64
+exec_prefix=${prefix}
+libdir=/opt/R/x86_64/lib
+includedir=/opt/R/x86_64/include
+
+Name: absl_log_internal_log_impl
+Description: Abseil log_internal_log_impl library
+URL: https://abseil.io/
+Version: 20250127
+Requires: absl_log_internal_conditions = 20250127, absl_log_internal_message = 20250127, absl_log_internal_strip = 20250127, absl_absl_vlog_is_on = 20250127
+Libs: -L${libdir}  
+Cflags: -I${includedir} -Wno-float-conversion -Wno-implicit-float-conversion -Wno-implicit-int-float-conversion -Wno-unknown-warning-option -DNOMINMAX

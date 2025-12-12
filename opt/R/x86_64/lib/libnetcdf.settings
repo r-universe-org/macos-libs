@@ -3,12 +3,13 @@
 
 # General
 -------
-NetCDF Version:		4.8.1
-Dispatch Version:       3
-Configured On:		Sun Feb 16 23:53:33 NZDT 2025
-Host System:		x86_64-apple-darwin22.3.0
-Build Directory: 	/Volumes/Builds/recipes/build/netcdf-4.8.1-obj
+NetCDF Version:		4.9.2
+Dispatch Version:       5
+Configured On:		Fri Oct 31 17:24:53 NZDT 2025
+Host System:		x86_64-apple-darwin24.6.0
+Build Directory: 	/Volumes/Builds/recipes/build/netcdf-4.9.2-obj
 Install Prefix:         /opt/R/x86_64
+Plugin Install Prefix:  N.A.
 
 # Compiling Options
 -----------------
@@ -21,27 +22,40 @@ AM_CPPFLAGS:
 AM_LDFLAGS:		
 Shared Library:		no
 Static Library:		yes
-Extra libraries:	-lhdf5_hl -lhdf5 -lm -lz -lcurl -L/opt/R/x86_64/lib -lsz
+Extra libraries:	-lhdf5_hl -lhdf5 -lm -lz -lbz2 -lzstd -lxml2 -lcurl -L/opt/R/x86_64/lib -lsz
+XML Parser:             libxml2
 
 # Features
 --------
+Benchmarks:		no
 NetCDF-2 API:		yes
 HDF4 Support:		no
 HDF5 Support:		yes
 NetCDF-4 API:		yes
+CDF5 Support:		yes
 NC-4 Parallel Support:	no
 PnetCDF Support:	no
+
 DAP2 Support:		yes
 DAP4 Support:		yes
-Byte-Range Support:	no
+Byte-Range Support:	yes
+
+S3 Support:	        no
+
+NCZarr Support:		yes
+NCZarr Zip Support:     no
+
 Diskless Support:	yes
 MMap Support:		no
 JNA Support:		no
-CDF5 Support:		yes
 ERANGE Fill Support:	no
 Relaxed Boundary Check:	yes
-SZIP Support:           yes
-SZIP Write Support:     yes
-Parallel Filters:       yes
-NCZarr Support:		yes
+
 Multi-Filter Support:	yes
+Quantization:		yes
+Logging:     		no
+SZIP Write Support:     yes
+Standard Filters:       deflate bz2 zstd
+ZSTD Support:           yes
+Parallel Filters:       yes
+

@@ -33,6 +33,7 @@
 #  define POPPLER_CPP_DEPRECATED_NO_EXPORT POPPLER_CPP_NO_EXPORT POPPLER_CPP_DEPRECATED
 #endif
 
+/* NOLINTNEXTLINE(readability-avoid-unconditional-preprocessor-if) */
 #if 0 /* DEFINE_NO_DEPRECATED */
 #  ifndef POPPLER_CPP_NO_DEPRECATED
 #    define POPPLER_CPP_NO_DEPRECATED

@@ -1,0 +1,12 @@
+prefix=/opt/R/x86_64
+exec_prefix=${prefix}
+libdir=/opt/R/x86_64/lib
+includedir=/opt/R/x86_64/include
+
+Name: absl_crc_cord_state
+Description: Abseil crc_cord_state library
+URL: https://abseil.io/
+Version: 20250127
+Requires: absl_crc32c = 20250127, absl_config = 20250127, absl_strings = 20250127, absl_no_destructor = 20250127
+Libs: -L${libdir}  -labsl_crc_cord_state 
+Cflags: -I${includedir} -Wno-float-conversion -Wno-implicit-float-conversion -Wno-implicit-int-float-conversion -Wno-unknown-warning-option -DNOMINMAX

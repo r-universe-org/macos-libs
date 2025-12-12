@@ -1,0 +1,12 @@
+prefix=/opt/R/x86_64
+exec_prefix=${prefix}
+libdir=/opt/R/x86_64/lib
+includedir=/opt/R/x86_64/include
+
+Name: absl_bits
+Description: Abseil bits library
+URL: https://abseil.io/
+Version: 20250127
+Requires: absl_core_headers = 20250127
+Libs: -L${libdir}  
+Cflags: -I${includedir} -Wno-float-conversion -Wno-implicit-float-conversion -Wno-implicit-int-float-conversion -Wno-unknown-warning-option -DNOMINMAX

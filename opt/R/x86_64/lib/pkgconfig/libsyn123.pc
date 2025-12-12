@@ -1,0 +1,12 @@
+prefix=/opt/R/x86_64
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libsyn123
+Description: A signal synthesis library accompanying mpg123
+Requires: 
+Version: 1.33.3
+Libs: -L${libdir} -lsyn123 
+Libs.private: 
+Cflags: -I${includedir} 

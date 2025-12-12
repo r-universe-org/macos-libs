@@ -6,8 +6,8 @@ ccompiler=gcc
 
 Name: netcdf-c
 Description: NetCDF Client Library for C
-URL: http://www.unidata.ucar.edu/netcdf
-Version: 4.8.1
-Libs: -L${libdir} -L/opt/R/x86_64/lib -lnetcdf -lhdf5_hl -lhdf5 -lm -lz -lcurl -L/opt/R/x86_64/lib -lsz
-Libs.private: -lhdf5_hl -lhdf5 -lm -lz -lcurl -L/opt/R/x86_64/lib -lsz
+URL: https://www.unidata.ucar.edu/netcdf
+Version: 4.9.2
+Libs: -L${libdir} -L/opt/R/x86_64/lib -lnetcdf -lhdf5_hl -lhdf5 -lm -lz -lbz2 -lzstd -lxml2 -lcurl -L/opt/R/x86_64/lib -lsz
+Libs.private: -lhdf5_hl -lhdf5 -lm -lz -lbz2 -lzstd -lxml2 -lcurl -L/opt/R/x86_64/lib -lsz
 Cflags: -I${includedir}
