@@ -14,6 +14,11 @@ ARCH=$(uname -m)
 HOMEBREW=$(brew --prefix)
 DEST="${PWD}/opt/R/${ARCH}"
 #PATH=/opt/homebrew/bin:$PATH
+if [ "$ARCH" = "x86_64" ]; then
+DARWIN=darwin20
+else
+DARWIN=darwin23
+fi
 
 #This would fail once there are duplicate packages in the folder:
 #wget -r -np -nv -R "index.html*" https://mac.r-project.org/bin/darwin20/${ARCH}/
@@ -23,10 +28,10 @@ rm -Rf $(dirname ${DEST}) out files.log
 mkdir out
 mkdir packages
 mkdir -p ${DEST}
-packages=$(curl -sSL "https://mac.r-project.org/bin/darwin20/${ARCH}/PACKAGES" | perl -lne 'print $1 if /Binary: (.+)/')
+packages=$(curl -sSL "https://mac.r-project.org/bin/${DARWIN}/${ARCH}/PACKAGES" | perl -lne 'print $1 if /Binary: (.+)/')
 while IFS= read -r pkg; do
 	echo "Downloading $pkg"
-	url="https://mac.r-project.org/bin/darwin20/${ARCH}/$pkg"
+	url="https://mac.r-project.org/bin/${DARWIN}/${ARCH}/$pkg"
 	curl -sSL "$url" -o "packages/$pkg"
 	echo "$url" >> files.log
 done <<< "$packages"
@@ -48,7 +53,7 @@ mv bin oldbin
 mkdir bin
 
 # Suggested by SU email Jul 15, 2024
-curl -sS https://mac.r-project.org/openmp/openmp-19.1.0-darwin20-Release.tar.gz \
+curl -sS https://mac.r-project.org/openmp/openmp-19.1.5-darwin20-Release.tar.gz \
  | tar vxz --strip 3 -C include/ usr/local/include
 
 # nb: h5++ seems missing ?
