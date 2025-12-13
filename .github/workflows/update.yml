@@ -10,7 +10,7 @@ on:
 name: Download latest libs from CRAN
 
 jobs:
-  Build:
+  download:
     # OS matters because we copy 'cmake' and 'zstd' binaries from homebrew
     strategy:
       matrix:
@@ -28,32 +28,31 @@ jobs:
       - name: Download libraries
         run: ./.github/workflows/download.sh
 
-      - name: Push binaries
-        run: |
-          arch=$(uname -m)
-          git add opt files.log
-          git commit -m "Update at $(date +%F)" || exit 0
-          if [ $arch = "x86_64" ]; then
-            git push origin
-          fi
+      - uses: actions/upload-artifact@v6
+        with:
+          name: cranlibs-${{ matrix.os }}
+          path: opt
 
-      - name: Create xz and zstd bundles
+  Combine:
+    if: ${{ github.event.inputs.release == 'true' }}
+    runs-on: ubuntu-latest
+    needs: download
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          merge-multiple: true
+
+      - name: Create xz and zstd archives
         id: bundles
         run: |
-          mkdir assets
-          arch=$(uname -m)
-          tar cfJ assets/cranlibs-${arch}.tar.xz opt
-          gtar -I 'zstd --ultra -22' -cf assets/cranlibs-${arch}.tar.zst opt
+          mkdir opt
+          mv R opt/
+          tar cfJ cranlibs-everything.tar.xz opt
+          tar -I 'zstd --ultra -22' -cf cranlibs-everything.tar.zst opt
           echo "date=$(date +%F)" >> $GITHUB_OUTPUT
 
-#      - uses: actions/upload-artifact@v3
-#        with:
-#          name: cranlibs
-#          path: assets
-
       - name: Release
-        if: ${{ github.event.inputs.release == 'true' }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.bundles.outputs.date }}
-          files: assets/*
+          files: cranlibs-everything.*
