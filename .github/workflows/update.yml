@@ -47,6 +47,7 @@ jobs:
         run: |
           mkdir opt
           mv R opt/
+          chmod +x opt/R/*/bin/*
           tar cfJ cranlibs-everything.tar.xz opt
           tar -I 'zstd --ultra -22' -cf cranlibs-everything.tar.zst opt
           echo "date=$(date +%F)" >> $GITHUB_OUTPUT
