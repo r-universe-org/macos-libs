@@ -64,6 +64,9 @@ mv share oldshare
 mkdir share/
 (cd oldshare; mv -v gdal proj pkgconfig texinfo ../share/)
 
+# Workaround for wrong name
+(cd lib/pkgconfig; sed 's/-l:libuv.a/-luv/' libuv-static.pc > libuv.pc)
+
 # Only keep static libs and pc files
 gfind lib -type f -not \( -name '*.a' -or -name '*.pc' -or -name '*.settings' -or -name '*.h' \) -delete
 
