@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
+CHECKOUT="${PWD}"
 
 # Workaround for big-sur being deprecated on homebrew
 if [ "${OSTYPE:6:2}" = "20" ]; then
@@ -79,6 +80,12 @@ cp -R ${HOMEBREW}/opt/cmake/share/cmake/Modules share/cmake/
 cp -v ${HOMEBREW}/opt/gnu-tar/bin/gtar ./bin/
 cp -v ${HOMEBREW}/opt/zstd-static/bin/{zstdmt,zstd,unzstd} ./bin/
 cp -v $(brew --repo)/Library/Homebrew/os/mac/pkgconfig/13/* ./lib/pkgconfig/
+
+# Add nghttp2 (not in recipes yet)
+if [ ! -e "include/nghttp2" ]; then
+cp -Rfv ${CHECKOUT}/nghttp2/* .
+sed "s/@arch@/${ARCH}/g" lib/pkgconfig/libnghttp2.pc.in > lib/pkgconfig/libnghttp2.pc
+fi
 
 # Copy to final location
 mv bin lib include share ${DEST}/
